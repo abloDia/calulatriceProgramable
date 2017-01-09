@@ -18,7 +18,7 @@ public:
 	virtual Nombre* tangenteHyperbolique() const = 0;
 	
 	virtual void afficherValeur() const = 0;
-
+        bool estReel() ;
 private:
 
 };
