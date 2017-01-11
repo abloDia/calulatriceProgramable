@@ -9,12 +9,12 @@ class OperationBinaire :public Operation {
 public:
 	OperationBinaire( TypeOperation type);
 	virtual Nombre* appliqueOperation() ;
-	virtual void modifierNombres (Nombre* premierTerme, Nombre* secondTerme) override;
-	virtual void modifierNombre(Nombre* uniqueTerme) override;
+	virtual void setNombres(Nombre* nombre1, Nombre* nombre2) override;
+	virtual void setNombre(Nombre* nombre1) override;
 
 private:
-	 Nombre* d_premierTerme;
-	 Nombre* d_secondTerme;
+	 Nombre* d_nombre1;
+	 Nombre* d_nombre2;
 };
 
 #endif

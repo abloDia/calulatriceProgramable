@@ -3,101 +3,67 @@
 
 OperationBinaire::OperationBinaire( TypeOperation type) : Operation{ type }
 {
-	
+
 }
 
-Nombre* OperationBinaire::appliqueOperation() 
-{
-	std::string messageErreur = "parametre d'operation non valide";
+Nombre* OperationBinaire::appliqueOperation() {
 	switch (d_type)
 	{
-		case AJOUT: 
-			return d_premierTerme->addition(d_secondTerme);
-			break;
-			
-		case SOUS: 
-			return d_premierTerme->soustraction(d_secondTerme);
-			break;
-			
-		case MUL: 
-			return d_premierTerme->multiplication(d_secondTerme);
-			break;
-			
-		case DIV: 
-			return d_premierTerme->division(d_secondTerme);
-			break;
-			
-		case PUISS: 
-			return nullptr;
-			break;
-			
-		case MOD: 
-			return nullptr;
-			break;
-			
-		case SIN: 
-			throw Erreur(messageErreur);
-			return nullptr;
-			break;
-		
-		case SIN_H:
-			throw Erreur(messageErreur);
-			return nullptr;
-			break;
-		
-		case COS:
-			throw Erreur(messageErreur);
-			return nullptr;
-			break;
-		
-		case COS_H:
-			throw Erreur(messageErreur);
-			return nullptr;
-			break;
-	
-		
-		case TAN:
-			throw Erreur(messageErreur);
-			return nullptr;
-			break;
-			
-		case TAN_H:
-			throw Erreur(messageErreur);
-			return nullptr;
-			break;
-			
-		case LN:
-			throw Erreur(messageErreur);
-			return nullptr;
-			break;
-			
-		case LOG:
-			throw Erreur(messageErreur);
-			return nullptr;
-			break;
-			
-		case RACINE:
-			throw Erreur(messageErreur);
-			return nullptr;
-			break;
-			
-		case CUBE:
-			throw Erreur(messageErreur);
-			return nullptr;
-			break;
-		case CHS:
-			throw Erreur(messageErreur);
-			return nullptr;
-			break;
-			
-		default:
-			break;
+	case AJOUT: return d_nombre1->addition(d_nombre2);
+		break;
+	case SOUS: return d_nombre1->soustraction(d_nombre2);
+		break;
+	case MUL: return d_nombre1->multiplication(d_nombre2);
+		break;
+	case DIV: return d_nombre1->division(d_nombre2);
+		break;
+	case PUISS: return nullptr;
+		break;
+	case MOD: return nullptr;
+		break;
+	case SIN: 
+		throw Erreur("", "parametre d'operation non valide"); return nullptr;
+		break;
+	case SIN_H:
+		throw Erreur("", "parametre d'operation non valide"); return nullptr;
+		break;
+	case COS:
+		throw Erreur("", "parametre d'operation non valide"); return nullptr;
+		break;
+	case COS_H:
+		throw Erreur("", "parametre d'operation non valide"); return nullptr;
+		break;
+		throw Erreur("", "parametre d'operation non valide"); return nullptr;
+	case TAN:
+		throw Erreur("", "parametre  d'operation non valide"); return nullptr;
+		break;
+	case TAN_H:
+		throw Erreur("", "parametre d'operation non valide"); return nullptr;
+		break;
+	case LN:
+		throw Erreur("", "parametre d'operation non valide"); return nullptr;
+		break;
+	case LOG:
+		throw Erreur("", "parametre d'operation non valide"); return nullptr;
+		break;
+	case RACINE:
+		throw Erreur("", "parametre d'operation non valide"); return nullptr;
+
+		break;
+	case CUBE:
+		throw Erreur("", "parametre d'operation non valide"); return nullptr;
+
+		break;
+	case CHS:
+		throw Erreur("", "parametre d'operation non valide"); return nullptr;
+		break;
+	default:
+		break;
 	}
 }
-void OperationBinaire::modifierNombres(Nombre* premierTerme, Nombre* secondTerme){
-	d_premierTerme = premierTerme;
-	d_secondTerme = secondTerme;
+void OperationBinaire::setNombres(Nombre* nombre1, Nombre* nombre2){
+	d_nombre1 = nombre1;
+	d_nombre2 = nombre2;
 }
-
- void OperationBinaire::modifierNombre(Nombre* uniqueTerme) {
+ void OperationBinaire::setNombre(Nombre* nombre1) {
  }

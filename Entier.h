@@ -1,8 +1,9 @@
 #ifndef ENTIER_H
 #define ENTIER_H
-#include<string>
+
 
 #include "Nombre.h"
+#include <cmath>
 
 class Entier :public Nombre  {
 public:
@@ -22,10 +23,6 @@ public:
 	virtual Nombre* tangenteHyperbolique() const override;
 	
 	virtual void afficherValeur() const override;
-	
-	Entier* effectuerOperationBinaire(char signeOperation, Nombre* secondTerme) const;
-	Entier* effectuerOperationUnaire(const std::string& nomOperation) const;
-	
 
 
 

@@ -1,111 +1,101 @@
-#include "Nombre.h"
 #include "Reel.h"
+#include "Entier.h"
 #include "Erreur.h"
 #include<iostream>
-#include<cmath>
-
-Reel* Reel::traduireNombreEnReel(Nombre* monNombre)
-{
-	Reel* monReel = dynamic_cast<Reel*>(monNombre);
-	return new Reel(monReel->obtenirValeur());
-}
-
-Reel* Reel::effectuerOperationBinaire(char signeOperation, Nombre* secondTerme) const
-{
-	Reel* secondTermeEnReel = secondTermeEnReel->traduireNombreEnReel(secondTerme);
-	switch(signeOperation)
-	{
-		case '+': 
-			return new Reel(d_valeur + secondTermeEnReel->obtenirValeur());
-			break;
-			
-		case '-':
-			return new Reel(d_valeur - secondTermeEnReel->obtenirValeur());
-			break;		
-			
-		case '*':
-			return new Reel(d_valeur * secondTermeEnReel->obtenirValeur());
-			break;
-			
-		case '/':
-			return new Reel(d_valeur / secondTermeEnReel->obtenirValeur());
-			break;
-	}
-}
-
-Reel* Reel::effectuerOperationUnaire(const std::string& nomOperation) const
-{
-	if(nomOperation == "sinus")
-		return new Reel(sin(d_valeur));
-	
-	if(nomOperation == "cosinus")
-		return new Reel(cos(d_valeur));
-		
-	if(nomOperation == "tangente")
-		return new Reel(tan(d_valeur));
-	
-	if(nomOperation == "sinusHyperbolique")
-		return new Reel(sinh(d_valeur));
-	
-	if(nomOperation == "cosinusHyperbolique")
-		return new Reel(cosh(d_valeur));
-		
-	if(nomOperation == "tangenteHyperbolique")
-		return new Reel(tanh(d_valeur));
-}
-
 
 
 Reel::Reel(float valeur) :d_valeur{ valeur }{}
 
-Nombre* Reel::addition(Nombre* secondTerme) const 
+
+
+Nombre* Reel::addition(Nombre* nb)const  {
+
+	if (nb->estEntier())
+	{
+		Entier* ptEntier = dynamic_cast< Entier*>(nb);
+		return new Reel(d_valeur+ptEntier->obtenirValeur());
+
+	}
+
+	else{
+
+		Reel* ptReel = dynamic_cast< Reel*>(nb);
+		return new Reel(d_valeur + ptReel->obtenirValeur());
+	}
+}
+Nombre* Reel::soustraction(Nombre* nb) const 
 {
-	effectuerOperationBinaire('+', secondTerme);
+		if (nb->estEntier())
+	{
+		Entier* ptEntier = dynamic_cast< Entier*>(nb);
+		return new Reel(d_valeur-ptEntier->obtenirValeur());
+
+	}
+
+	else{
+
+		Reel* ptReel = dynamic_cast< Reel*>(nb);
+		return new Reel(d_valeur - ptReel->obtenirValeur());
+	}
 }
 
-Nombre* Reel::soustraction(Nombre* secondTerme) const 
-{
-	effectuerOperationBinaire('-',secondTerme);
-}
+Nombre* Reel::multiplication(Nombre* nb) const{
+	if(nb->estEntier())
+	{
+		Entier* ptEntier = dynamic_cast< Entier*>(nb);
+		return new Reel(d_valeur * ptEntier->obtenirValeur());
 
-Nombre* Reel::multiplication(Nombre* secondTerme) const
-{
-	effectuerOperationBinaire('*',secondTerme);
-}
+	}
 
-Nombre* Reel::division(Nombre* secondTerme) const
-{
-	effectuerOperationBinaire('/',secondTerme);
+	else{
+
+		Reel* ptReel = dynamic_cast< Reel*>(nb);
+		return new Reel(d_valeur * ptReel->obtenirValeur());
+	}
+}
+Nombre* Reel::division(Nombre* nb) const{
+	if (nb->estEntier())
+	{
+		Entier* ptEntier = dynamic_cast< Entier*>(nb);
+		return new Reel(d_valeur / ptEntier->obtenirValeur());
+
+	}
+
+	else{
+
+		Reel* ptReel = dynamic_cast< Reel*>(nb);
+		return new Reel(d_valeur / ptReel->obtenirValeur());
+	}
 }
 
 Nombre* Reel::sinus() const 
 {
-	effectuerOperationUnaire("sinus");
+	return new Reel(sin(d_valeur));
 }
-
 Nombre* Reel::cosinus() const
 {
-	effectuerOperationUnaire("cosinus");
+	return new Reel(cos(d_valeur));
 }
 Nombre* Reel::tangente() const
 {
-	effectuerOperationUnaire("tangente");
+	return new Reel(tan(d_valeur));
 }
 
 Nombre* Reel::sinusHyperbolique() const
 {
-	effectuerOperationUnaire("sinusHyperbolique");
-}
+	return new Reel(sinh(d_valeur));
 
+}
 Nombre* Reel::cosinusHyperbolique() const
 {
-	effectuerOperationUnaire("cosinusHyperbolique");
+	return new Reel(cosh(d_valeur));
 }
-
 Nombre* Reel::tangenteHyperbolique() const
 {
-	effectuerOperationUnaire("tangenteHyperbolique");
+	return new Reel(tanh(d_valeur));
 }
+
+
 
 float Reel::obtenirValeur() const{
 	return d_valeur;

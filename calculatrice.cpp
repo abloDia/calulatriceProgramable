@@ -1,4 +1,4 @@
-#include "Calculatrice.h"
+	#include "Calculatrice.h"
 	
 	
 	Calculatrice::Calculatrice() 
@@ -34,17 +34,18 @@
 		if (op == 0)
 		{ 
 			maPile->enleveDernierNombre();
-			operation.modifierNombre(maPile->obtenirX());
+			operation.setNombre(maPile->obtenirX());
 			maPile->ajouterNombre(operation.appliqueOperation());
 		}
 		else
 		{
 			maPile->enleveDeuxDerniersNombres();
-			operation.modifierNombres(maPile->obtenirX(),maPile->obtenirY());
+			operation.setNombres(maPile->obtenirX(),maPile->obtenirY());
 			maPile->ajouterNombre(operation.appliqueOperation());
 		}
 		
 		return true;
+		
 	}
 	
 

@@ -154,7 +154,6 @@
 						switch(operation)
 						{
 							case 1: //addition
-							
 								monOperationBinaire= new OperationBinaire(TypeOperation::AJOUT);
 								maCalculatrice->appliquerOperationSurPile(*monOperationBinaire);
 								//on affiche voir la pile
@@ -163,7 +162,7 @@
 							break;
 
 							case 2: //soustraction 
-								monOperationBinaire= new OperationBinaire(TypeOperation::SOUS);
+								monOperationBinaire= new OperationBinaire(TypeOperation::AJOUT);
 								maCalculatrice->appliquerOperationSurPile(*monOperationBinaire);
 								//on affiche voir la pile
 								affichagePileDansConsole();

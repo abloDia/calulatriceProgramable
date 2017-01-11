@@ -1,4 +1,4 @@
-#ifndef PILE_H
+	#ifndef PILE_H
 	#define PILE_H
 	#include <iostream>
 	#include <vector>
@@ -59,3 +59,5 @@
 		static Nombre* x; //dernier x enleve
 		static Nombre* y; //dernier y enleve
 	};
+	
+	#endif

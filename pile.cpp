@@ -1,4 +1,4 @@
-#include "pile.h"
+	#include "pile.h"
 	#include "Erreur.h"
 	#include "Reel.h"
 	#include "Entier.h"
@@ -150,9 +150,16 @@
 	{
 		if (!pileUnique->estCorrectementVide() && !pileUnique->estTotalementVide())
 		{
-			
-			Reel* dernierNombreEnReel = dernierNombreEnReel->traduireNombreEnReel(pileUnique->dernierNombre());
-			pileUnique->x = new Reel(dernierNombreEnReel->obtenirValeur());
+			if(pileUnique->dernierNombre()->estEntier())
+			{
+				Entier* ptEntier = dynamic_cast<Entier*>(pileUnique->dernierNombre());
+				pileUnique->x = new Entier(ptEntier->obtenirValeur());
+			}
+			else
+			{
+				Reel* ptReel = dynamic_cast<Reel*>(pileUnique->dernierNombre());
+				pileUnique->x = new Reel(ptReel->obtenirValeur());
+			}
 			pileUnique->d_nombres.pop_back();
 			
 			if (pileUnique->estTotalementVide())
@@ -169,18 +176,32 @@
 	
 	void pile::enleveDeuxDerniersNombres()
 	{
-		int nombreVariableNecessaire = 2;
-		
-		if (pileUnique->taillePile() >= nombreVariableNecessaire)
+		if (pileUnique->taillePile() >= 2)
 		{			
-			Reel* xEnReel = xEnReel->traduireNombreEnReel(pileUnique->dernierNombre());
-			pileUnique->x = new Reel(xEnReel->obtenirValeur());
-			pileUnique->supprimerDernier();
+			if(pileUnique->dernierNombre()->estEntier())
+			{
+				Entier* ptEntier = dynamic_cast<Entier*>(pileUnique->dernierNombre());
+				pileUnique->x = new Entier(ptEntier->obtenirValeur());
+			}
+			else
+			{
+				Reel* ptReel = dynamic_cast<Reel*>(pileUnique->dernierNombre());
+				pileUnique->x = new Reel(ptReel->obtenirValeur());
+			}
+			pileUnique->d_nombres.pop_back();
 			//ici x est rempli et le nombre deleted
 			
-			Reel* yEnReel = yEnReel->traduireNombreEnReel(pileUnique->dernierNombre());
-			pileUnique->y = new Reel(yEnReel->obtenirValeur());
-			pileUnique->supprimerDernier();
+			if(pileUnique->dernierNombre()->estEntier())
+			{
+				Entier* ptEntier = dynamic_cast<Entier*>(pileUnique->dernierNombre());
+				pileUnique->y = new Entier(ptEntier->obtenirValeur());
+			}
+			else
+			{
+				Reel* ptReel = dynamic_cast<Reel*>(pileUnique->dernierNombre());
+				pileUnique->y = new Reel(ptReel->obtenirValeur());
+			}
+			pileUnique->d_nombres.pop_back();
 			//ici y est rempli et le nombre deleted
 			
 			if (pileUnique->estTotalementVide())
@@ -203,10 +224,10 @@
 	
 	bool pile::estCorrectementVide()
 	{    
-		Reel* dernierNombreEnReel = dernierNombreEnReel->traduireNombreEnReel(pileUnique->dernierNombre());
-	    if(!dernierNombreEnReel==0)
+		Reel* ptReel = dynamic_cast< Reel*>(pileUnique->dernierNombre());
+	    if(!ptReel==0)
 	    {
-			return (pileUnique->taillePile() == 1 && dernierNombreEnReel->obtenirValeur()==0.0);	
+		return (pileUnique->taillePile() == 1 && ptReel->obtenirValeur()==0.0);	
 		}
 		return false;
 	}
@@ -218,8 +239,8 @@
 		while (!pileUnique->estTotalementVide())
 		{
 			pileUnique->d_nombres.pop_back();
-
 		}
+		
 		pileUnique->ajouterNombre(new Reel(0.0));    
 	}
 	
@@ -253,6 +274,13 @@
 	
 	void pile::supprimerDernier()
 	{
-	    pileUnique->d_nombres.pop_back();
+	    if(pileUnique->estInstanciee())
+		{
+			pileUnique->d_nombres.pop_back();
+		}
+		else
+		{
+			throw Erreur("","La pile n'est pas instanciee");
+		}
 	}
 
